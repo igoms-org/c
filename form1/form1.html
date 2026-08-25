@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>নাগরিক সনদ — ফর্ম</title>
+  <script>
+    /* লগইন-গার্ড: টোকেন না থাকলে বা মেয়াদ শেষ হলে সাথে সাথেই লগইন
+       পেজে পাঠিয়ে দিন — সনদ তৈরির ফর্ম দেখতে হলে লগইন আবশ্যক। */
+    (function () {
+      try {
+        var raw = localStorage.getItem("ns_auth");
+        var session = raw ? JSON.parse(raw) : null;
+        var valid = session && session.token && (!session.expiresAt || new Date(session.expiresAt) > new Date());
+        if (!valid) window.location.replace("../login.html");
+      } catch (e) {
+        window.location.replace("../login.html");
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="form1.css">
+</head>
+<body>
+
+  <div class="menu">
+    <button autofocus onclick="goBack()">ড্যাশবোর্ড</button>
+    <button type="button" onclick="handleLogout()">লগ আউট</button>
+  </div>
+
+  <center>
+    <div class="reg-form-wrap">
+      <div class="reg-form-card">
+        <h2>ফর্ম ১ — নাগরিক সনদপত্র নিবন্ধন</h2>
+
+        <form id="regForm" novalidate>
+
+          <div class="form-section-label">অবস্থান সংক্রান্ত তথ্য</div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="district">জেলা <span class="req">*</span></label>
+              <input type="text" id="district" placeholder="জেলার নাম" readonly>
+              <label class="edit-toggle">
+                <input type="checkbox" id="districtEdit"> সম্পাদনা করুন
+              </label>
+              <input type="text" id="districtId" class="id-input" placeholder="জেলা কোড (district_id)" inputmode="numeric" style="display:none;">
+              <div class="field-error" id="err-district"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="upazila">উপজেলা <span class="req">*</span></label>
+              <select id="upazila"></select>
+              <label class="edit-toggle">
+                <input type="checkbox" id="upazilaEdit"> সম্পাদনা করুন
+              </label>
+              <input type="text" id="upazilaManual" placeholder="উপজেলার নাম লিখুন" style="display:none;">
+              <input type="text" id="upzId" class="id-input" placeholder="উপজেলা কোড (upz_id)" inputmode="numeric" style="display:none;">
+              <div class="field-error" id="err-upazila"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="union">ইউনিয়ন <span class="req">*</span></label>
+              <select id="union"></select>
+              <label class="edit-toggle">
+                <input type="checkbox" id="unionEdit"> সম্পাদনা করুন
+              </label>
+              <input type="text" id="unionManual" placeholder="ইউনিয়নের নাম লিখুন" style="display:none;">
+              <input type="text" id="unionId" class="id-input" placeholder="ইউনিয়ন কোড (union_id)" inputmode="numeric" style="display:none;">
+              <div class="field-error" id="err-union"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="ward">ওয়ার্ড নম্বর <span class="req">*</span></label>
+              <select id="ward"></select>
+              <div class="field-error" id="err-ward"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="postOffice">ডাকঘর <span class="req">*</span></label>
+              <select id="postOffice"></select>
+              <label style="font-weight:400;font-size:13px;margin-top:4px;">
+                <input type="checkbox" id="postOfficeOther"> তালিকায় নেই? (লিখুন)
+              </label>
+              <input type="text" id="postOfficeOtherInput" placeholder="ডাকঘরের নাম লিখুন" style="display:none;margin-top:4px;padding:8px;border:1px solid #b9c2bd;border-radius:6px;">
+              <div class="field-error" id="err-postOffice"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="village">গ্রাম <span class="req">*</span></label>
+              <select id="village"></select>
+              <label style="font-weight:400;font-size:13px;margin-top:4px;">
+                <input type="checkbox" id="villageOther"> তালিকায় নেই? (লিখুন)
+              </label>
+              <input type="text" id="villageOtherInput" placeholder="গ্রামের নাম লিখুন" style="display:none;margin-top:4px;padding:8px;border:1px solid #b9c2bd;border-radius:6px;">
+              <div class="field-error" id="err-village"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="issueDate">তারিখ <span class="req">*</span></label>
+              <input type="date" id="issueDate">
+              <label class="edit-toggle">
+                <input type="checkbox" id="issueDateEdit"> তারিখ সম্পাদনা করুন
+              </label>
+              <div class="field-error" id="err-issueDate"></div>
+            </div>
+
+            <div class="form-field full">
+              <div class="smarok-preview">
+                স্মারক নং (প্রিভিউ):
+                <strong id="smarokPreview">45.—.—.—.—.</strong>
+                <span class="smarok-serial-hint">[মেমো নং স্বয়ংক্রিয়]</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section-label">আবেদনকারীর তথ্য</div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">নাম <span class="req">*</span></label>
+              <input type="text" id="name" placeholder="পূর্ণ নাম লিখুন">
+              <div class="field-error" id="err-name"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="nid">NID / জন্মনিবন্ধন নম্বর <span class="req">*</span></label>
+              <input type="text" id="nid" placeholder="নম্বর লিখুন" inputmode="numeric">
+              <div class="field-error" id="err-nid"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="fatherName"><span id="fatherNameLabelText">পিতার নাম</span> <span class="req">*</span></label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="guardianRelation" value="পিতা" checked> পিতা
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="guardianRelation" value="স্বামী"> স্বামী
+                </label>
+              </div>
+              <input type="text" id="fatherName" placeholder="পিতার নাম লিখুন">
+              <div class="field-error" id="err-fatherName"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="motherName">মাতার নাম <span class="req">*</span></label>
+              <input type="text" id="motherName" placeholder="মাতার নাম লিখুন">
+              <div class="field-error" id="err-motherName"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="houseNo">বাসা নং</label>
+              <input type="text" id="houseNo" placeholder="বাসা নং লিখুন" value="00-00-0000-00">
+            </div>
+          </div>
+
+          <div class="form-section-label">চেয়ারম্যান সংক্রান্ত তথ্য</div>
+          <div class="form-grid">
+            <div class="form-field full">
+              <label>পদবি নির্বাচন করুন <span class="req">*</span></label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="chairmanType" value="চেয়ারম্যান" checked> চেয়ারম্যান
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="chairmanType" value="প্যানেল চেয়ারম্যান"> প্যানেল চেয়ারম্যান
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="chairmanType" value="প্রশাসনিক কর্মকর্তা"> প্রশাসনিক কর্মকর্তা
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="chairmanType" value="__other__"> অন্যান্য (লিখুন)
+                </label>
+              </div>
+              <input type="text" id="chairmanTypeOtherInput" placeholder="পদবি লিখুন (যেমনঃ চেয়ারম্যান পদ শূন্য / দায়িত্বপ্রাপ্ত কর্মকর্তা)" style="display:none;margin-top:8px;">
+              <div class="field-error" id="err-chairmanType"></div>
+            </div>
+
+            <div class="form-field full">
+              <label for="chairmanName">চেয়ারম্যান / দায়িত্বপ্রাপ্তের নাম <span class="req">*</span></label>
+              <input type="text" id="chairmanName" list="chairmanNameList" placeholder="নাম লিখুন" autocomplete="off">
+              <datalist id="chairmanNameList"></datalist>
+              <div class="field-error" id="err-chairmanName"></div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">নাগরিক সনদ তৈরি করুন</button>
+            <button type="button" class="btn btn-secondary" onclick="goBack()">ড্যাশবোর্ডে ফিরুন</button>
+          </div>
+
+          <div class="status-msg" id="statusMsg"></div>
+        </form>
+
+        <div class="result-card" id="resultCard">
+          <div class="result-row"><span>স্মারক নং</span><span id="res-memo">-</span></div>
+          <div class="result-row"><span>স্মারক ক্রমিক</span><span id="res-serial">-</span></div>
+          <div class="result-row"><span>সার্টিফিকেট লিংক</span><span id="res-link">-</span></div>
+          <div class="result-qr"><img id="res-qr-img" src="" alt="QR Code"></div>
+          <div class="result-actions">
+            <a class="btn btn-primary" id="btn-view-cert" href="#" target="_blank" rel="noopener">নাগরিক সনদ দেখুন</a>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('btn-view-cert').click()">প্রিন্ট করুন</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </center>
+
+  <script src="form1.js"></script>
+</body>
+</html>

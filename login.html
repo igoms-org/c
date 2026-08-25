@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>নাগরিক সনদ — লগইন</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <h2>ইউনিয়ন পরিষদ</h2>
+      <p class="hint">সনদ তৈরি করতে হলে লগইন করা আবশ্যক।<br>শুধু QR কোড স্ক্যান করে সনদ দেখতে লগইনের প্রয়োজন নেই।</p>
+
+      <form id="loginForm" novalidate>
+        <div class="form-field">
+          <label for="username">ইউজারনেম</label>
+          <input type="text" id="username" autocomplete="username" autofocus>
+        </div>
+        <div class="form-field">
+          <label for="password">পাসওয়ার্ড</label>
+          <input type="password" id="password" autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginBtn">লগইন করুন</button>
+        <div class="status-msg" id="loginStatus"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

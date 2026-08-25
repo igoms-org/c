@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>নাগরিক সনদ — ফর্ম নির্বাচন</title>
+  <script>
+    /* লগইন-গার্ড: টোকেন না থাকলে বা মেয়াদ শেষ হলে সাথে সাথেই লগইন
+       পেজে পাঠিয়ে দিন — পেজের বাকি অংশ রেন্ডার হওয়ার আগেই (flash এড়াতে)। */
+    (function () {
+      try {
+        var raw = localStorage.getItem("ns_auth");
+        var session = raw ? JSON.parse(raw) : null;
+        var valid = session && session.token && (!session.expiresAt || new Date(session.expiresAt) > new Date());
+        if (!valid) window.location.replace("login.html");
+      } catch (e) {
+        window.location.replace("login.html");
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <div class="menu" style="display:flex;align-items:center;justify-content:space-between;padding:0 16px;">
+    <strong style="color:#fff;font-size:16px">ইউনিয়ন পরিষদ — নাগরিক সনদ ব্যবস্থাপনা</strong>
+    <span style="display:flex;align-items:center;gap:10px;">
+      <span id="whoami" style="color:#fff;font-size:13px;"></span>
+      <button type="button" onclick="handleLogout()">লগ আউট</button>
+    </span>
+  </div>
+
+  <center>
+    <div>
+      <div class="cer-container" style="padding:18px 18px 26px;">
+        <table width="95%" border="0" align="center">
+          <tbody>
+            <tr>
+              <td width="14%" height="70" valign="middle"></td>
+              <td width="72%" align="center" nowrap>
+                <div style="font-size:16px">Stay safe</div>
+                <div style="font-size:32px;font-weight:700;text-shadow:3px 3px 5px #aaa" class="head-line-1">
+                   ইউনিয়ন পরিষদ
+                  <div class="head-line-2"><b>উপজেলা: কালুখালী, জেলা: রাজবাড়ী।</b></div>
+                  <div class="head-line-2" style="font-size:16px">www.lgoms.org</div>
+                </div>
+              </td>
+              <td width="14%"></td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <div class="form-select-wrap" style="margin-top:18px;">
+          <div class="form-select-title">নাগরিক সনদ তৈরি করুন</div>
+          <div class="form-select-grid">
+            <a class="form-select-card" href="form1/form1.html">
+              নাগরিক সনদ ফর্ম
+              <small>নাগরিক সনদপত্র</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="search-wrap" style="margin-top:26px;">
+          <div class="search-card">
+            <h3>🔍 সার্টিফিকেট খুঁজুন</h3>
+            <p class="hint">আগে ইস্যু করা সার্টিফিকেট দেখতে চাইলে স্মারক ক্রমিক দিয়ে খুঁজুন।</p>
+            <form id="searchForm" novalidate>
+              <div class="search-row">
+                <div class="form-field">
+                  <label for="searchSerial">স্মারক ক্রমিক</label>
+                  <input type="text" id="searchSerial" placeholder="যেমন: 00006800" inputmode="numeric">
+                </div>
+                <button type="submit" class="btn btn-primary" id="searchBtn">খুঁজুন</button>
+              </div>
+              <div class="status-msg" id="searchStatus"></div>
+            </form>
+          </div>
+        </div>
+
+        <table>
+          <tbody>
+            <tr>
+              <td width="22%" align="center" valign="bottom" nowrap style="padding-top:24px;font-size:13px">
+                ইউপি কর পরিশোধ করুন**** অল্প সময়ে সল্প খরচে,সঠিক বিচার পেতে,চল যাই গ্রামআদালতে*** সময়মত জন্মওমৃত্যু নিবন্ধন করুন।
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </center>
+
+  <script src="index.js"></script>
+</body>
+</html>

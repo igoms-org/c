@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>নাগরিক সনদ</title>
+  <link rel="stylesheet" href="certificate.css">
+</head>
+<body>
+
+  <div class="menu">
+    <button autofocus onclick="goBack()">ড্যাশবোর্ড</button>
+    <button onclick="window.print()">প্রিন্ট করুন A4 landscape</button>
+  </div>
+
+  <center>
+    <div id="loadingMsg" style="padding:40px;font-size:16px;">তথ্য লোড হচ্ছে...</div>
+
+    <div id="certRoot" style="display:none;">
+      <div>
+        <div class="cer-container">
+
+          <!-- Header: QR, office name, photo -->
+          <table width="95%" border="0" align="center">
+            <tbody>
+              <tr>
+                <td width="14%" height="90" valign="middle">
+                  <div class="qrframe">
+                    <img id="c-qr" src="" alt="QR Code">
+                  </div>
+                </td>
+
+                <td width="60%" align="center" nowrap>
+                  <div style="font-size:16px">গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার</div>
+                  <div style="font-size:36px;font-weight:700;text-shadow:3px 3px 5px #aaa" class="head-line-1">
+                    <span id="c-union">০৪ নং মাঝবাড়ী</span> ইউনিয়ন পরিষদ
+                    <div class="head-line-2"><b>উপজেলা: <span id="c-upazila-head">কালুখালী</span>, জেলা: <span id="c-district-head">রাজবাড়ী</span>।</b></div>
+                    <div class="head-line-2" style="font-size:16px">www.lgoms.org</div>
+                  </div>
+                </td>
+
+                <td width="10%" align="right" valign="middle">
+                  <img src="../assets/images/abc.jpg" alt=" " style="width: 120px; height: 140px; border: 1px solid #a9a9a9; padding: 1px; background-color: #ffffff; display: inline-block;">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Memo number / title / date -->
+          <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td width="35%" height="63" nowrap style="font-size:18px">
+                  স্মারক নং:<div class="snBn" id="c-memo"></div>
+                </td>
+                <td width="30%" align="center" nowrap>
+                  <div class="title">নাগরিক সনদপত্র</div>
+                </td>
+                <td width="35%" align="right" nowrap style="font-size:18px">
+                  তারিখ: <strong id="c-date"></strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <hr>
+
+          <!-- Certificate body text -->
+          <table width="96%" border="0" align="center" cellpadding="5" cellspacing="0">
+            <tbody>
+              <tr>
+                <td height="130" align="justify" valign="middle">
+                  <div class="inner-text">
+                    এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,
+                    <span class="text-line" id="c-name"></span><b>(</b><span class="text-line" id="c-nid"></span><b>),</b>
+                    <span id="c-father-label">পিতা</span>:<span class="text-line" id="c-father"></span>,
+                    মাতাঃ <span class="text-line" id="c-mother"></span>,
+                    গ্রামঃ <span class="text-line" id="c-village"></span>,
+                    বাসা নংঃ <span class="text-line" id="c-house"></span>,
+                    ওয়ার্ড নংঃ <span class="text-line" id="c-ward"></span>,
+                    ডাকঘরঃ <span class="text-line" id="c-post"></span>,
+                    উপজেলাঃ <span class="text-line" id="c-upazila"></span>,
+                    জেলাঃ <span class="text-line" id="c-district"></span>।
+                    এর জন্মনিবন্ধন সনদ/জাতীয় পরিচয়পত্র যাচাই করে <span id="c-ward2"></span> নং ওয়ার্ডের ইউপি সদস্য এর তথ্যমতে জানা যায় যে,
+                    তিনি অত্র ইউনিয়নের <span id="c-ward3"></span> নং ওয়ার্ডের <span id="c-village2"></span> গ্রামের স্থায়ী বাসিন্দা এবং জন্ম সূত্রে বাংলাদেশের নাগরিক।
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table width="85%" border="0" align="center" cellpadding="5" cellspacing="0">
+            <tbody>
+              <tr>
+                <td height="31" valign="top" nowrap>
+                  <strong style="font-size:18px">আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Signature block -->
+          <table width="95%" border="0" align="center" cellpadding="5" cellspacing="0">
+            <tbody>
+              <tr style="font-size:16px">
+                <td width="29%" align="center" valign="bottom" nowrap><strong></strong><br></td>
+                <td width="29%" align="center" valign="bottom" nowrap><strong></strong><br></td>
+                <td width="29%" align="center" valign="bottom" nowrap>
+                  <strong id="c-chairman"></strong><br>
+                  <span id="c-chairman-type">চেয়ারম্যান</span><br>
+                  <span id="c-union2">০৪ নং মাঝবাড়ী</span> ইউনিয়ন পরিষদ<br>
+                  <span id="c-upazila-sign">কালুখালী</span>, <span id="c-district-sign">রাজবাড়ী</span>।
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Footer notice -->
+          <table>
+            <tbody>
+              <tr style="font-size:16px">
+                <td width="22%" align="center" valign="bottom" nowrap>
+                  ইউপি কর পরিশোধ করুন**** অল্প সময়ে সল্প খরচে,সঠিক বিচার পেতে,চল যাই গ্রামআদালতে*** সময়মত জন্মওমৃত্যু নিবন্ধন করুন।
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div id="errorMsg" style="display:none;padding:40px;font-size:16px;color:#8a1f11;">
+      এই নাগরিক সনদটি খুঁজে পাওয়া যায়নি অথবা লিংকটি সঠিক নয়।
+    </div>
+  </center>
+
+  <script src="certificate.js"></script>
+</body>
+</html>

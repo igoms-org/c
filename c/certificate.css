@@ -1,0 +1,159 @@
+/* =========================================================
+   নাগরিক সনদপত্র — সার্টিফিকেট ১ ডিজাইন (certificate)
+   ব্যবহারকারীর দেয়া certificate.zip থেকে হুবহু নেয়া ডিজাইন —
+   শুধু ফন্ট/ইমেজ পাথ শেয়ার্ড assets/ ফোল্ডারে নির্দেশ করে আপডেট করা হয়েছে।
+   ========================================================= */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: "SolaimanLipi";
+  font-style: normal;
+  font-weight: 400;
+  src: local("SolaimanLipi"),
+       url("../assets/fonts/SolaimanLipi.woff") format("woff");
+}
+
+/* মূল সোর্সে "SutonnyMJ" এর জন্য কোনো এমবেডেড ফাইল ছিল না,
+   তাই ব্রাউজার ফন্ট-স্ট্যাক অনুযায়ী পরের ফন্টে ফলব্যাক করবে (.snBn দেখুন)। */
+@font-face {
+  font-family: "SutonnyMJ";
+  src: local("SutonnyMJ");
+}
+
+/* ---------- Base / layout ---------- */
+body {
+  font-family: "SolaimanLipi", adarshalipi, NikoshBAN, sans-serif;
+  background: #ccc;
+  -webkit-print-color-adjust: exact;
+  zoom: 95%;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px dotted #fc9;
+  margin-top: 0em;
+  padding: 0;
+}
+
+/* Hide broken/empty placeholder images (e.g. missing photo box) */
+img[src="data:,"],
+source[src="data:,"] {
+  display: none !important;
+}
+
+/* ---------- Floating menu buttons ---------- */
+.menu {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 8em;
+  margin-top: -2.5em;
+}
+
+button {
+  display: inline-block;
+  background-color: #f5f5f5;
+  background-image: linear-gradient(to bottom, #f5f5f5, #f1f1f1);
+  color: #444;
+  border: 1px solid #dcdcdc;
+  border-radius: 2px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  height: 27px;
+  line-height: 27px;
+  width: 100px;
+  padding: 0 8px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: kalpurushregular, "SolaimanLipi", adarshalipi, NikoshBAN, sans-serif;
+}
+
+/* ---------- Certificate card ---------- */
+.cer-container {
+  background-image: url("../assets/images/certificate-bg.png");
+  background-repeat: no-repeat;
+  background-size: 350px 350px;
+  background-position: bottom;
+  background-color: white;
+
+  height: 535px;
+  width: 840px;
+  padding: 20px;
+
+  font-family: "SolaimanLipi", sans-serif;
+  text-align: justify;
+  font-size: 18px;
+
+  border: 1.4rem solid;
+  border-image: radial-gradient(#ff2, #55f) 30;
+  border-image-outset: 1.5;
+  margin: 4.1rem;
+}
+
+/* ---------- Text elements ---------- */
+.inner-text {
+  text-align: justify;
+  line-height: 30px;
+  font-size: 18px;
+  color: #000;
+}
+
+.title {
+  font-size: 26px;
+  padding: 3px;
+  color: #ffc;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 10px auto;
+  width: 240px;
+  text-align: center;
+  border: 3px solid #640000;
+  background: linear-gradient(#900, #6c0000);
+}
+
+.text-line {
+  border-bottom: 1px dotted #000;
+  color: #000;
+  padding: 3px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.head-line-1 {
+  color: #900;
+  margin-top: 10px;
+}
+
+.head-line-2 {
+  color: #000;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.snBn {
+  font-family: "SutonnyMJ", Arial, "Georgia", serif;
+  float: right;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+/* ---------- QR code box ---------- */
+.qrframe img {
+  width: 100px;
+  height: 100px;
+}
+
+/* ---------- Loading / error states ---------- */
+#loadingMsg, #errorMsg {
+  font-family: "Hind Siliguri", "SolaimanLipi", sans-serif;
+}
+
+@media print {
+  .menu {
+    display: none !important;
+  }
+  @page { size: A4 landscape; margin: 8mm; }
+}

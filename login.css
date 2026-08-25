@@ -1,0 +1,64 @@
+/* =========================================================
+   login.css — লগইন পেজ
+   ========================================================= */
+
+.login-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.login-card h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  color: #1b2b60;
+}
+
+.login-card .hint {
+  margin: 0 0 22px;
+  font-size: 14px;
+  color: #666;
+}
+
+.login-card form {
+  text-align: left;
+}
+
+.login-card .form-field {
+  margin-bottom: 14px;
+}
+
+.login-card .form-field label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.login-card .form-field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #b9c2bd;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.login-card .btn-primary {
+  width: 100%;
+  margin-top: 8px;
+}
