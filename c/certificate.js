@@ -87,6 +87,10 @@ async function gasGet(params) {
       document.getElementById("c-union2").textContent = c.union;
     }
 
+    const isMadapur = String(c.union || "").includes("মদাপুর");
+    document.getElementById("signature-default").style.display = isMadapur ? "none" : "";
+    document.getElementById("signature-madapur").style.display = isMadapur ? "" : "none";
+
     loadingEl.style.display = "none";
     rootEl.style.display = "block";
   } catch (err) {
